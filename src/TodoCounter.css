@@ -1,0 +1,39 @@
+h2, p{
+    margin: 0;
+}
+
+h2{
+    font-size: 40px;
+}
+
+.containerNav-content{
+    margin-top: -16px;
+    font-weight: 700;
+    margin-bottom: 11px;
+}
+
+.containerNav-search img{
+    width: 1rem;
+    object-fit: contain;
+}
+
+.containerNav{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+.containerNav-search{
+    display: flex;
+    width: 76%;
+    align-self: center;
+    border-radius: 10px;
+    height: 2rem;
+    background-color: white;
+}
+
+.containerNav-search input{
+    border: none;
+    margin-left: 6px;
+}
