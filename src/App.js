@@ -24,36 +24,62 @@ export let deftodos = [
 
 //custom hook
 function useLocalStorage(itemName, initialValue){
+  const [error, setError] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [item, setItem] = React.useState(initialValue);
 
-  const localStorageItem= localStorage.getItem(itemName);
-  let parsedItem;
+  React.useEffect(
+    () => {
+      setTimeout(() => {
+        try{
+          const localStorageItem= localStorage.getItem(itemName);
+          let parsedItem;
 
-  if(!localStorageItem){
-    localStorage.setItem(itemName,JSON.stringify(initialValue));
-    parsedItem=initialValue;
-  }else{
-    parsedItem = JSON.parse(localStorageItem);
-  }
+          if(!localStorageItem){
+            localStorage.setItem(itemName,JSON.stringify(initialValue));
+            parsedItem=initialValue;
+          }else{
+            parsedItem = JSON.parse(localStorageItem);
+          }
 
-  const [item, setItem] = React.useState(parsedItem);
+          setItem(parsedItem);
+          setLoading(false);
+        } catch(error){
+          setError(error);
+        }
+      },1000);
+    }
+  ); 
+
+  
+
+  
 
   const saveItem = (newItem) =>{
-    const stringifiedItem = JSON.stringify(newItem);
-    localStorage.setItem(itemName, stringifiedItem);
-    setItem(newItem);
+    try{
+      const stringifiedItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName, stringifiedItem);
+      setItem(newItem);
+    }catch(error){
+      setError(error);
+    }
   };
 
-  return [
-    item,
+  return{item,
     saveItem,
-  ];
+    loading,
+    error,
+  };
 
 }
 
 function App() {
 
- const [todos, saveTodos] = useLocalStorage('TODOS_V1',[]);
-  console.log(todos);
+ const {
+  item: todos, 
+  saveItem: saveTodos,
+  loading,
+  error} = useLocalStorage('TODOS_V1',[]);
   const [homework, setHomework] = React.useState('');
   
   const completedTodos = todos.filter(todo => todo.completed).length;
@@ -96,7 +122,13 @@ function App() {
  
   }
 
+  console.log('Render (antes del use effect)');
 
+  React.useEffect(() => {
+    console.log('use effect');
+  },[totalTodos]);
+
+  console.log('Render (luego del use effect)');
 
   return (
     <section className='containerPrincipal'>
@@ -109,6 +141,10 @@ function App() {
         total={totalTodos} 
         setHomework={setHomework}/>
         <TodoList>
+          <p>{loading}</p>
+          {loading && <p>Estamos cargando, no desesperes....</p>}
+          {error && <p>Desespérate, hubo un error</p>}
+          {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO!</p>}
         {searchedTodos.map(todo => (
           <TodoItem 
           key={todo.id} 
