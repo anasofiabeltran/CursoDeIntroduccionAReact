@@ -42,31 +42,40 @@ function App() {
                 <CreateTodoButton />
               </section>
               <section className='containerPrincipal-section_2'>
-                <TodoCounter />
+                
                 <TodoContext.Consumer>
                   {({loading,
                       error,
+                      totalTodos,
+                      homework,
+                      setHomework,
+                      completedTodos,
                       searchedTodos,
                       checkTodos,
                       deleteTodos,})=>(
-                      <TodoList>
-                      <p>{loading}</p>
-                      {loading && <p>Estamos cargando, no desesperes....</p>}
-                      {error && <p>Desespérate, hubo un error</p>}
-                      {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO!</p>}
-                    {searchedTodos.map(todo => (
-                      <TodoItem 
-                      key={todo.id} 
-                      id={todo.id} 
-                      text={todo.text} 
-                      completed={todo.completed} 
-                      onComplete={() =>  checkTodos(todo.id)}
-                      onDelete={() => deleteTodos(todo.id)}
-                      />
-                    
-                    )
-                  )}
-                  </TodoList>
+                        <>
+                          <TodoCounter setHomework={setHomework}/>
+                          <TodoList>
+                              <p>{loading}</p>
+                              {loading && <p>Estamos cargando, no desesperes....</p>}
+                              {error && <p>Desespérate, hubo un error</p>}
+                              {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO!</p>}
+                              {console.log(searchedTodos)}
+                            {searchedTodos.map(todo => (
+                              <TodoItem 
+                              key={todo.id} 
+                              id={todo.id} 
+                              text={todo.text} 
+                              completed={todo.completed} 
+                              onComplete={() =>  checkTodos(todo.id)}
+                              onDelete={() => deleteTodos(todo.id)}
+                              />
+                            
+                            )
+                          )}
+                          </TodoList>
+                        </>
+                      
                   )
                   }
                 </TodoContext.Consumer>

@@ -53,13 +53,13 @@ function TodoProvider(props){
    
     }
   
-    console.log('Render (antes del use effect)');
+    //console.log('Render (antes del use effect)');
   
     React.useEffect(() => {
-      console.log('use effect');
+      //console.log('use effect');
     },[totalTodos]);
   
-    console.log('Render (luego del use effect)');
+    //console.log('Render (luego del use effect)');
 
     return(
         <TodoContext.Provider value={{
