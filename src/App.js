@@ -1,12 +1,11 @@
 //import logo from './logo.svg';
 import React from 'react';
-import { TodoContext } from './todoContext';
+import { TodoContext, TodoProvider,UseContext } from './todoContext';
 import { TodoCounter } from './TodoCounter';
 import { TodoItem } from './TodoItem';
 import { TodoList } from './TodoList';
 import { TodoSearch } from './TodoSearch';
 import { CreateTodoButton } from './CreateTodoButton';
-import { TodoProvider } from './todoContext';
 
 import './App.css';
 
@@ -33,8 +32,16 @@ export let deftodos = [
 
 
 function App() {
-
-
+  
+  const {loading,
+    error,
+    totalTodos,
+    homework,
+    setHomework,
+    completedTodos,
+    searchedTodos,
+    checkTodos,
+    deleteTodos,}=UseContext()
   return (
     <TodoProvider>
         <section className='containerPrincipal'>
@@ -42,43 +49,25 @@ function App() {
                 <CreateTodoButton />
               </section>
               <section className='containerPrincipal-section_2'>
-                
-                <TodoContext.Consumer>
-                  {({loading,
-                      error,
-                      totalTodos,
-                      homework,
-                      setHomework,
-                      completedTodos,
-                      searchedTodos,
-                      checkTodos,
-                      deleteTodos,})=>(
-                        <>
-                          <TodoCounter setHomework={setHomework}/>
-                          <TodoList>
-                              <p>{loading}</p>
-                              {loading && <p>Estamos cargando, no desesperes....</p>}
-                              {error && <p>Desespérate, hubo un error</p>}
-                              {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO!</p>}
-                              {console.log(searchedTodos)}
-                            {searchedTodos.map(todo => (
-                              <TodoItem 
-                              key={todo.id} 
-                              id={todo.id} 
-                              text={todo.text} 
-                              completed={todo.completed} 
-                              onComplete={() =>  checkTodos(todo.id)}
-                              onDelete={() => deleteTodos(todo.id)}
-                              />
-                            
-                            )
-                          )}
-                          </TodoList>
-                        </>
-                      
+              <TodoCounter setHomework={setHomework}/>
+                <TodoList>
+                    <p>{loading}</p>
+                    {loading && <p>Estamos cargando, no desesperes....</p>}
+                    {error && <p>Desespérate, hubo un error</p>}
+                    {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO!</p>}
+                  {searchedTodos.map(todo => (
+                    <TodoItem 
+                    key={todo.id} 
+                    id={todo.id} 
+                    text={todo.text} 
+                    completed={todo.completed} 
+                    onComplete={() =>  checkTodos(todo.id)}
+                    onDelete={() => deleteTodos(todo.id)}
+                    />
+                  
                   )
-                  }
-                </TodoContext.Consumer>
+                )}
+                </TodoList>
               </section>   
             </section>
     </TodoProvider>
