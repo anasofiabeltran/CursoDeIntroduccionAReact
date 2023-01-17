@@ -35,21 +35,17 @@ function App() {
   
   const {loading,
     error,
-    totalTodos,
-    homework,
-    setHomework,
-    completedTodos,
     searchedTodos,
     checkTodos,
     deleteTodos,}=UseContext()
   return (
-    <TodoProvider>
+    <>
         <section className='containerPrincipal'>
               <section className='containerPrincipal-section_1'>
                 <CreateTodoButton />
               </section>
               <section className='containerPrincipal-section_2'>
-              <TodoCounter setHomework={setHomework}/>
+              <TodoCounter/>
                 <TodoList>
                     <p>{loading}</p>
                     {loading && <p>Estamos cargando, no desesperes....</p>}
@@ -70,7 +66,7 @@ function App() {
                 </TodoList>
               </section>   
             </section>
-    </TodoProvider>
+    </>
     
   );
 }

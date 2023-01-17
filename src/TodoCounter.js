@@ -1,5 +1,7 @@
 import React from "react";
 import './TodoCounter.css'
+import {UseContext } from './todoContext';
+
 
 const estilosH2 = {
     background: 'linear-gradient(to right, #9dc7cc 0%, #fc794f 100%)',
@@ -7,12 +9,19 @@ const estilosH2 = {
     WebkitTextFillColor: 'transparent',
 }
 
-function TodoCounter(props){
-    const [searchValue, setSearchValue]= React.useState('');
+function TodoCounter(){
+
+    const {
+        totalTodos,
+        homework,
+        setHomework,
+        completedTodos,
+    }=UseContext()
+
+
 
     const onSearchValueChange = (event) =>{
-        setSearchValue(event.target.value);
-        props.setHomework(event.target.value);
+        setHomework(event.target.value);
     }
 
     return (
@@ -23,7 +32,7 @@ function TodoCounter(props){
                 Your tasks
             </h2>
             <p className="containerNav-content">
-                Completed {props.completed} de {props.total}
+                Completed {completedTodos} de {totalTodos}
             </p>
             <section className="containerNav-search">
                 <input 
@@ -32,7 +41,7 @@ function TodoCounter(props){
                 />
                 <img src="https://i.pinimg.com/originals/71/68/99/716899d4a15ad03f139f16e7606df47f.png" />
             </section>
-            <p>Buscando: {searchValue}</p>
+            <p>Buscando: {homework.length}</p>
         </div>
         
     );

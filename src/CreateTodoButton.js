@@ -25,7 +25,7 @@ function addTask(mensaje){
     console.log(newTask.id)
 }
 */
-function CreateTodoButton(props){  
+function CreateTodoButton(){  
     return(
         <section className='principalContainer'>
             <h2>

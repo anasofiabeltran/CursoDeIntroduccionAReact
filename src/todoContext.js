@@ -18,8 +18,7 @@ function TodoProvider(props){
     const totalTodos= todos.length;
   
     let searchedTodos = [];
-  
-    if(!homework.length >=1){
+    if(homework.length <1){
       searchedTodos = todos;
     } else{
       searchedTodos =  todos.filter(work => {
