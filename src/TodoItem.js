@@ -13,7 +13,7 @@ function TodoItem(props){
             <span onClick={props.onComplete} className={`${props.completed && 'TodoItem-checket'} circle `}>
             </span>
             <p>{props.text}</p>
-            <span onClick={props.onDelete} className={`${!props.completed && 'eliminateItem'} pointer`}></span>
+            <span onClick={props.onDelete} className={`eliminateItem pointer`}></span>
         </li>
     );
 }

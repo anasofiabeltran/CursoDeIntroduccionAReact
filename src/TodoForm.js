@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { UseContext } from './todoContext';
 
 function TodoForm(){
-    const {addTodo} = UseContext()
+    const {setOpenModal,addTodo} = UseContext()
     const [text,setText]=useState('')
 
     function write(info){
         setText(info.target.value)
     }
-    const onSubmit = () =>{
-        addTodo(text)
+    const onSubmit = (event) =>{
+        event.preventDefault();
+        addTodo(text);
+        setOpenModal(false)
     }
     return(
         <form onSubmit={onSubmit}>
@@ -17,7 +19,8 @@ function TodoForm(){
             <textarea onChange={ write} id='input' placeholder='Lunch rocket to the moon' />
             <div>
                 <button
-                type="button">
+                type="button"
+                onClick={() => setOpenModal(false)}>
                     Cancel
                 </button>
                 <button
