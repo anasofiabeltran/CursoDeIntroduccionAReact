@@ -1,0 +1,30 @@
+.modalBackground{
+    background: rgba(32, 35,41,.8);
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.modal{
+    background-color: white;
+    padding: 10px;
+    color: black;
+    display: flex;
+    gap: 5px;
+    border: solid 2px transparent;
+    border-radius: 10px;
+}
+
+.modal p{
+    margin-bottom: 10px;
+}
+
+.modal button{
+    height: 30px;
+}

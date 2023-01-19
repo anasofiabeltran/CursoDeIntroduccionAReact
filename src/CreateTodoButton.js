@@ -1,43 +1,23 @@
 import React from 'react';
 import './CreateTodoButton.css';
-import {default as App, deftodos} from './App.js';
 
-/*
-function deleteTask(id){
-    console.log(`id: ${id}`)
-    document.getElementById(id).remove();
-    
-}
-function addTask(mensaje){
-    let newTask= {id:deftodos.length+1, text: mensaje, completed: false}
-    deftodos.push(newTask);
-    console.log(deftodos);
-    document.getElementById('TodoList-list').innerHTML+=`
-    <li id=${newTask.id} class="todoItem  ${newTask.completed && 'TodoItem-ready'}">
-        <span class="${newTask.completed && 'TodoItem-checket'} circle">
-        </span>
-        <p>${newTask.text}</p>
-        <span id=task_${newTask.id} class="${!newTask.completed && 'eliminateItem'} pointer"></span>
-    </li>
-    `
-    document.getElementById(`task_${newTask.id}`).onclick= () => deleteTask(newTask.id);
-    console.log(document.getElementById(`task_${newTask.id}`).onclick)
-    console.log(newTask.id)
-}
-*/
-function CreateTodoButton(){  
+
+
+
+function CreateTodoButton({setOpenModal}){  
+
+    const onClickButton = () =>{
+        setOpenModal(prevState => !prevState)
+    }
     return(
         <section className='principalContainer'>
             <h2>
                 Create new task
             </h2>
             <div className='principalContainer-content'>
-                <div>
-                    <p>Task Name</p>
-                    <input id='input' placeholder='Lunch rocket to the moon' />
-                </div>
                 
-                <button  className='pointer'>
+                
+                <button  className='pointer' onClick={onClickButton}>
                     Create task
                 </button>
             </div>

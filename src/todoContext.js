@@ -61,6 +61,20 @@ function TodoProvider(props){
   
     //console.log('Render (luego del use effect)');
 
+    //Modal state
+    const [openModal, setOpenModal] = React.useState(false)
+
+    //add todo
+    const addTodo = (text) =>{
+      let item = {id:totalTodos+1, text: text, completed: false}
+      try{
+        const stringifiedItem = JSON.stringify([...todos,item]);
+        localStorage.setItem('TODOS_V1', stringifiedItem);
+      }catch(error){
+        console.log(error);
+      }
+    }
+
     return(
         <TodoContext.Provider value={{
             loading,
@@ -72,6 +86,9 @@ function TodoProvider(props){
             searchedTodos,
             checkTodos,
             deleteTodos,
+            openModal,
+            setOpenModal,
+            addTodo,
         }}>
             {props.children}
         </TodoContext.Provider>

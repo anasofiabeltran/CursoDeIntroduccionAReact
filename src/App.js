@@ -6,6 +6,8 @@ import { TodoItem } from './TodoItem';
 import { TodoList } from './TodoList';
 import { TodoSearch } from './TodoSearch';
 import { CreateTodoButton } from './CreateTodoButton';
+import {Modal} from './Modal'
+import { TodoForm } from './TodoForm';
 
 import './App.css';
 
@@ -37,12 +39,24 @@ function App() {
     error,
     searchedTodos,
     checkTodos,
-    deleteTodos,}=UseContext()
+    deleteTodos,
+    openModal,
+    setOpenModal}=UseContext()
+
   return (
     <>
         <section className='containerPrincipal'>
               <section className='containerPrincipal-section_1'>
-                <CreateTodoButton />
+              {openModal &&(
+                <Modal>
+                <div className='modal'>
+                    <section>
+                      <TodoForm />
+                    </section>
+                </div>
+              </Modal>
+              )}
+                <CreateTodoButton setOpenModal={setOpenModal}/>
               </section>
               <section className='containerPrincipal-section_2'>
               <TodoCounter/>
@@ -66,6 +80,8 @@ function App() {
                 </TodoList>
               </section>   
             </section>
+            
+            
     </>
     
   );

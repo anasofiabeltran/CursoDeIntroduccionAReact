@@ -9,7 +9,7 @@
 }
 
 .principalContainer-content{
-    margin-top: 10%;
+    margin-top: 2%;
 }
 
 .principalContainer-content div{
@@ -47,7 +47,11 @@
     margin: 47% 0 -28% 12%;
 }
 
-.pointer{cursor:pointer;}
+.pointer{
+    cursor:pointer;
+    z-index: 1;
+    position: relative;
+}
 
 .pointer:hover{
     background-color: red;
