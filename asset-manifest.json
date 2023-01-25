@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CursoDeIntroduccionAReact/static/css/main.2e335de4.css",
+    "main.js": "/CursoDeIntroduccionAReact/static/js/main.0e9ad081.js",
+    "static/js/787.0a57351d.chunk.js": "/CursoDeIntroduccionAReact/static/js/787.0a57351d.chunk.js",
+    "index.html": "/CursoDeIntroduccionAReact/index.html",
+    "main.2e335de4.css.map": "/CursoDeIntroduccionAReact/static/css/main.2e335de4.css.map",
+    "main.0e9ad081.js.map": "/CursoDeIntroduccionAReact/static/js/main.0e9ad081.js.map",
+    "787.0a57351d.chunk.js.map": "/CursoDeIntroduccionAReact/static/js/787.0a57351d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2e335de4.css",
+    "static/js/main.0e9ad081.js"
+  ]
+}
